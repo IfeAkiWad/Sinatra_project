@@ -7,4 +7,3 @@ task :console do
     ActiveRecord::Base.logger = Logger.new(STDOUT)
     pry.start
 end
-update message
