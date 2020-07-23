@@ -13,4 +13,10 @@ class ApplicationController < Sinatra::Base
     erb :welcome
   end
 
+  get '/registration/signup' do
+
+    erb :'/registrations/signup'
+  
+  end
+
 end
