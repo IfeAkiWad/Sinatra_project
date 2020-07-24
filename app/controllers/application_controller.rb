@@ -34,11 +34,11 @@ class ApplicationController < Sinatra::Base
     erb :'sessions/login'
   end
   
-  post 
+ 
 
   get 'users/homepage' do
     @user = User.find(session[:user_id])
-    erb :'homepage'
+    erb :'users/homepage'
   end
     
 
