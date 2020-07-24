@@ -3,3 +3,4 @@ class AddColumnToUsersTable < ActiveRecord::Migration
         add_column :users, :name, :string
     end
 end
+change commit message
