@@ -34,7 +34,11 @@ class ApplicationController < Sinatra::Base
     erb :'sessions/login'
   end
   
- 
+  post '/sessions' do 
+  puts params
+
+    @user = User.find_by(username: params[:username], password: params [:password])
+  end
 
   get 'users/homepage' do
     @user = User.find(session[:user_id])
