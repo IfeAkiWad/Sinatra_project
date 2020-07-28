@@ -57,7 +57,7 @@ class ApplicationController < Sinatra::Base
   end
   
   get '/browse' do
-
+    @products = Product.all
     erb :'/browse'
   end
 
