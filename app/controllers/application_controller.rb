@@ -56,9 +56,9 @@ class ApplicationController < Sinatra::Base
     erb :'/users/homepage'
   end
   
-  get '/browse' do
+  get '/products' do
     @products = Product.all
-    erb :'/browse'
+    erb :'/products'
   end
 
   get '/subscriptions' do
