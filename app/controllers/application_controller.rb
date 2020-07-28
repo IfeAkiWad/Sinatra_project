@@ -55,4 +55,22 @@ class ApplicationController < Sinatra::Base
     @user = User.find(session[:user_id])
     erb :'/users/homepage'
   end
+
+  get '/about' do
+
+    erb :'/about'
+  end
+  
+  get '/browse' do
+
+    erb :'/browse'
+  end
+
+  get '/subscriptions' do
+
+    erb :'/subscriptions'
+  end
+
+
+
 end
