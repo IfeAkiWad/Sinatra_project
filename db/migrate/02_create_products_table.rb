@@ -3,7 +3,7 @@ class CreateProductsTable < ActiveRecord::Migration
         create_table :products do |t|
             t.string :name
             t.string :brand
-            t.string :type
+            t.string :product_type
         end
     end
 end

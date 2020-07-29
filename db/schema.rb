@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20200727214903) do
   create_table "products", force: :cascade do |t|
     t.string "name"
     t.string "brand"
-    t.string "type"
+    t.string "product_type"
   end
 
   create_table "users", force: :cascade do |t|
