@@ -15,3 +15,9 @@ Product.create(name: "The Green Collection Avocado Hair Mousse", brand: "Curls",
 Product.create(name: "Rosemary Mint Strengthening Hair Masque", brand: "Mielle Organics", product_type: "Hair Mask")
 Product.create(name: "B. Well Organic + Australian 100% Tea Tree Oil", brand: "Briogeo", product_type: "Oil")
 Product.create(name: "Coconut Oil Styling Cream", brand: "Beleza Natural", product_type: "Curl Cream")
+
+User.create(username: "LillyPop",  password_digest: "flowers", subscription: "", name: "Lillian Perez" , email: "lilly@perez.com")
+User.create(username: "alleygator",  password_digest: "john1122son", subscription:, name: "Allison Johnson", email: "Alley@johnson.com")
+User.create(username: "swadewade",  password_digest: "curvacious" , subscription:, name: "Matthew Wade", email: "matthew@wade.com")
+User.create(username: "ToyToy",  password_digest: "Akin94" , subscription:, name: "Toyin Estrada", email: "Toyin@Estrada.com" )
+User.create(username: "RomanWWE",  password_digest: "GOAT" , subscription:, name: "Roman Reigns", email: "roman@reigns.com" )
