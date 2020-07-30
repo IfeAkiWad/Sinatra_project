@@ -1,4 +1,7 @@
 # dummy code
+Product.destroy_all
+User.destroy_all
+Subscription.destroy_all
 
 Product.create(name: "Wash Day Delight Water-to-Foam Shampoo", brand: "CAROL'S DAUGHTER", product_type: "Shampoo")
 Product.create(name: "Custom Curl Cream", brand: "PROSE", product_type: "Curl Cream")
@@ -16,8 +19,20 @@ Product.create(name: "Rosemary Mint Strengthening Hair Masque", brand: "Mielle O
 Product.create(name: "B. Well Organic + Australian 100% Tea Tree Oil", brand: "Briogeo", product_type: "Oil")
 Product.create(name: "Coconut Oil Styling Cream", brand: "Beleza Natural", product_type: "Curl Cream")
 
-User.create(username: "LillyPop",  password_digest: "flowers", subscription: "", name: "Lillian Perez" , email: "lilly@perez.com")
-User.create(username: "alleygator",  password_digest: "john1122son", subscription:, name: "Allison Johnson", email: "Alley@johnson.com")
-User.create(username: "swadewade",  password_digest: "curvacious" , subscription:, name: "Matthew Wade", email: "matthew@wade.com")
-User.create(username: "ToyToy",  password_digest: "Akin94" , subscription:, name: "Toyin Estrada", email: "Toyin@Estrada.com" )
-User.create(username: "RomanWWE",  password_digest: "GOAT" , subscription:, name: "Roman Reigns", email: "roman@reigns.com" )
+User.create(username: "LillyPop",  password_digest: "flowers", name: "Lillian Perez" , email: "lilly@perez.com")
+User.create(username: "alleygator",  password_digest: "john1122son", name: "Allison Johnson", email: "Alley@johnson.com")
+User.create(username: "swadewade",  password_digest: "curvacious" , name: "Matthew Wade", email: "matthew@wade.com")
+User.create(username: "ToyToy",  password_digest: "Akin94" , name: "Toyin Estrada", email: "Toyin@Estrada.com" )
+User.create(username: "RomanWWE",  password_digest: "GOAT" , name: "Roman Reigns", email: "roman@reigns.com" )
+
+User.all.each do |user|
+    costs = [5,10,15,20]
+    frequencies = ["bi-weekly", "monthly", "bi-monthly"]
+    3.times do
+        product = Product.all.sample
+        cost = costs.sample
+        frequency = frequencies.sample
+        Subscription.create(user_id: user.id, product_id: product.id, cost: cost, frequency: frequency )
+    end
+
+end
