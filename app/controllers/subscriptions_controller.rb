@@ -17,7 +17,7 @@ class SubscriptionsController < ApplicationController
  post '/subscriptions' do
     #because of the hidden field, params will now have a key/value pair called product_id
     #calling current_user.subscriptions.create(params) will the associate that new subscription with that product and user
-    #@subscription = current_user.subscriptions.create(params)
+    @subscription = current_user.subscriptions.create(params)
  end
 
 end
