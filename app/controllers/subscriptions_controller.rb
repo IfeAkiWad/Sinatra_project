@@ -1,6 +1,7 @@
 class SubscriptionsController < ApplicationController
     #index action
    get '/subscriptions' do
+      # binding.pry
       if logged_in?
          @subscriptions = current_user.subscriptions
          erb :'subscriptions/index'
@@ -10,6 +11,7 @@ class SubscriptionsController < ApplicationController
    end
 
    get '/products/:product_id/subscriptions/new' do 
+      # binding.pry
       @product = Product.find_by_id(params[:product_id])
       erb :'subscriptions/new'
    end

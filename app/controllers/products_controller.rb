@@ -4,11 +4,11 @@ class ProductsController < ApplicationController
     @products = Product.all
     erb :'products/index'
   end
-  #new action have to go about show action!/create
-  get '/products/new' do
-    @product = Product.create
-    erb :'/products/new'
-  end
+  # #new action have to go about show action/create
+  # get '/products/new' do
+  #   @product = Product.create
+  #   erb :'/products/new'
+  # end
   #show action
   get '/products/:id' do
     # binding.pry
