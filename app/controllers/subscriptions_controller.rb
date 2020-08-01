@@ -17,6 +17,7 @@ class SubscriptionsController < ApplicationController
    end
 
    post '/subscriptions' do
+      binding.pry
     #because of the hidden field, params will now have a key/value pair called product_id
     #calling current_user.subscriptions.create(params) will the associate that new subscription with that product and user
       @subscription = current_user.subscriptions.create(params)
