@@ -6,11 +6,11 @@ class Subscription < ActiveRecord::Base
 
     def cost(frequency)
         if frequency == "bi-weekly" 
-            cost = 5 
+            cost = 5.00 
         elsif frequency == "monthly" 
-            cost = 10 
+            cost = 10.00
         else 
-            cost = 20 
+            cost = 20.00
         end
         cost
     end
