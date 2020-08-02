@@ -34,5 +34,4 @@ User.all.each do |user|
         frequency = frequencies.sample
         Subscription.create(user_id: user.id, product_id: product.id, cost: cost, frequency: frequency )
     end
-
 end
