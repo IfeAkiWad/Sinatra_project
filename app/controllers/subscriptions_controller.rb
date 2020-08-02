@@ -10,8 +10,9 @@ class SubscriptionsController < ApplicationController
       end
    end
 
+   # subscription form
    get '/products/:product_id/subscriptions/new' do 
-      # binding.pry
+      binding.pry
       @product = Product.find_by_id(params[:product_id])
       erb :'subscriptions/new'
    end
@@ -21,6 +22,13 @@ class SubscriptionsController < ApplicationController
     #because of the hidden field, params will now have a key/value pair called product_id
     #calling current_user.subscriptions.create(params) will the associate that new subscription with that product and user
       @subscription = current_user.subscriptions.create(params)
+         # create if/case statement to determine cost by frequency
    end
+   # edit/update
+   get "/products/:product_id/subscriptions/edit" do
+      # make sure it is current_user product and subscription before sent to edit page
+     erb :'product/edit'
+   end
+
 
 end
