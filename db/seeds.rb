@@ -26,12 +26,10 @@ User.create(username: "ToyToy",  password_digest: "Akin94" , name: "Toyin Estrad
 User.create(username: "RomanWWE",  password_digest: "GOAT" , name: "Roman Reigns", email: "roman@reigns.com" )
 
 User.all.each do |user|
-    costs = [5,10,15,20]
     frequencies = ["bi-weekly", "monthly", "bi-monthly"]
     3.times do
         product = Product.all.sample
-        cost = costs.sample
         frequency = frequencies.sample
-        Subscription.create(user_id: user.id, product_id: product.id, cost: cost, frequency: frequency )
+        Subscription.create(user_id: user.id, product_id: product.id, frequency: frequency)
     end
 end

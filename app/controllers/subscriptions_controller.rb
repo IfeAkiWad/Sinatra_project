@@ -12,17 +12,24 @@ class SubscriptionsController < ApplicationController
 
    # subscription form
    get '/products/:product_id/subscriptions/new' do 
-      binding.pry
+      # binding.pry
       @product = Product.find_by_id(params[:product_id])
       erb :'subscriptions/new'
    end
 
-   post '/subscriptions' do
-      binding.pry
+   post '/subscriptions' do #NOT WORKING: WEIRD ERROR
     #because of the hidden field, params will now have a key/value pair called product_id
-    #calling current_user.subscriptions.create(params) will the associate that new subscription with that product and user
-      @subscription = current_user.subscriptions.create(params)
-         # create if/case statement to determine cost by frequency
+      @subscription = Subscription.new
+      @subscription.user_id = current_user.id
+      @subscription.product_id = params[:product_id]
+      # binding.pry
+         if @subscription.save
+            # binding.pry
+            @subscription.cost(@subscription.frequency)
+            # redirect 'subscriptions/'
+         else
+            redirect 'subscriptions/new'
+         end
    end
    # edit/update
    get "/products/:product_id/subscriptions/edit" do

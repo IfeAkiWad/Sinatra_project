@@ -22,7 +22,6 @@ ActiveRecord::Schema.define(version: 20200729220856) do
   create_table "subscriptions", force: :cascade do |t|
     t.integer "user_id"
     t.integer "product_id"
-    t.integer "cost"
     t.string  "frequency"
   end
 
