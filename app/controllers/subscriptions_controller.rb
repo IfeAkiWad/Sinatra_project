@@ -18,19 +18,19 @@ class SubscriptionsController < ApplicationController
    end
 
    post '/subscriptions' do #NOT WORKING: WEIRD ERROR
+      binding.pry
     #because of the hidden field, params will now have a key/value pair called product_id
       @subscription = Subscription.new
       @subscription.user_id = current_user.id
       @subscription.product_id = params[:product_id]
-      # binding.pry
          if @subscription.save
-            # binding.pry
             @subscription.cost(@subscription.frequency)
-            # redirect 'subscriptions/index'
+            redirect 'subscriptions/index'
          else
             redirect 'subscriptions/new'
          end
    end
+   
    # edit/update
    get "/products/:product_id/subscriptions/edit" do
       # make sure it is current_user product and subscription before sent to edit page
