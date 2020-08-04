@@ -26,7 +26,7 @@ class SubscriptionsController < ApplicationController
          if @subscription.save
             # binding.pry
             @subscription.cost(@subscription.frequency)
-            # redirect 'subscriptions/'
+            # redirect 'subscriptions/index'
          else
             redirect 'subscriptions/new'
          end
