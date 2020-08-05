@@ -1,0 +1,4 @@
+<h1>Your Current Subscriptions</h1>
+<% @subscriptions.each do |subscription| %>
+    <h4><a href="/products/<%=subscription.product.id%>"><%=subscription.product.name%></a></h4>
+<% end %>

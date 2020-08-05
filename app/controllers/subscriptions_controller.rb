@@ -3,6 +3,7 @@ class SubscriptionsController < ApplicationController
    get '/subscriptions' do
       # binding.pry
       if logged_in?
+         # binding.pry
          @subscriptions = current_user.subscriptions
          erb :'subscriptions/index'
       else
@@ -18,7 +19,7 @@ class SubscriptionsController < ApplicationController
    end
 
    post '/subscriptions' do #NOT WORKING: WEIRD ERROR
-      binding.pry
+      # binding.pry
     #because of the hidden field, params will now have a key/value pair called product_id
       @subscription = Subscription.new
       @subscription.user_id = current_user.id
