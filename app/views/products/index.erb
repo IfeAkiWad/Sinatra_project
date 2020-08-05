@@ -1,4 +1,7 @@
 <!--provide erb tags and iterate-->
+<h1>Browse Products</h1>
+<button><a href="/sessions/logout">Log Out</a></button>
+<br><br>
 <ul>
     <li>
         <button><h3><a href='/users/homepage'>Home</a></h3></button>
@@ -7,8 +10,10 @@
     <button><h3><a href="/subscriptions">My Subscriptions</a></h3></button>
     </li>
 </ul>
-<h1>Browse Products</h1>
+<br><br>
     <p>There are so many hair products to choose from!<br>Go ahead and take a look!<br>Do not forget to subscribe to your choice.</p>
 <% @products.each do |product| %>
-    <p><a href="/products/<%=product.id%>"><%=product.name%></a></p>
+    <ul>
+    <li><h4><a href="/products/<%=product.id%>"><%=product.name%></a></h4></li>
+    </ul>
 <% end %>   

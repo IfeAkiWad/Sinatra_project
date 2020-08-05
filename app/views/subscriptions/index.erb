@@ -1,4 +1,16 @@
 <h1>Your Current Subscriptions</h1>
+<button><a href="/sessions/logout">Log Out</a></button>
+<br><br>
+<ul>
+    <li>
+        <button><h3><a href='/users/homepage'>Home</a></h3></button>
+    </li>
+    <li>
+        <button><h3><a href="/products">Browse Products</a></h3></button>
+    </li>
+</ul>
+<br>
+<p>Click for more detail:</p>
 <% @subscriptions.each do |subscription| %>
     <h4><a href="/subscriptions/<%=subscription.id%>"><%=subscription.product.name%></a></h4>
 <% end %>

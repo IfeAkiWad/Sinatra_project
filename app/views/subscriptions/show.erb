@@ -1,6 +1,19 @@
 <h1>Your Subscription</h1>
-<p>Here is your current subscription:</p>
+<button><a href="/sessions/logout">Log Out</a></button>
+<br><br>
+<ul>
+    <li>
+        <button><h3><a href='/users/homepage'>Home</a></h3></button>
+    </li>
+    <li>
+        <button><h3><a href="/products">Browse Products</a></h3></button>
+    </li>
+    <li>
+    <button><h3><a href="/subscriptions">My Subscriptions</a></h3></button>
+    </li>
+</ul>
 <br>
+<p>Here is your current subscription:</p>
 <h4>Product: <%=@subscription.product.name%></h4>
-<p>Brand: <%=@subscription.product.brand%></p>
-<p>Product Type: <%=@subscription.product.product_type%></p>
+<p>Brand: <%=@subscription.product.brand%><br>Product Type: <%=@subscription.product.product_type%></p>
+<h4>place the frequency of the subscription here</h4>
