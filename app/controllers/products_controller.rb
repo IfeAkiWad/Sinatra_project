@@ -5,7 +5,7 @@ class ProductsController < ApplicationController
     erb :'products/index'
   end
   
-  #show action (displays one article based on ID in the url)
+  #show action (displays one product based on ID in the url)
   get '/products/:id' do
     # binding.pry
     @product = Product.find_by_id(params[:id])

@@ -1,3 +1,4 @@
+require 'pry'
 class Subscription < ActiveRecord::Base
     belongs_to :user
     belongs_to :product
@@ -5,13 +6,17 @@ class Subscription < ActiveRecord::Base
     # attributes: frequency
 
     def cost(frequency)
-        if frequency == "bi-weekly" 
-            cost = 5.00 
-        elsif frequency == "monthly" 
-            cost = 10.00
-        else 
-            cost = 20.00
+        
+        if frequency
+            binding.pry
+            if frequency.downcase == "bi-weekly" 
+                return  5.00 
+            elsif frequency.downcase == "monthly" 
+                return 10.00
+             else 
+                return 20.00
+            end
         end
-        cost
+        
     end
 end
