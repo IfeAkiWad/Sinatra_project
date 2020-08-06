@@ -9,7 +9,7 @@ class ProductsController < ApplicationController
   get '/products/:id' do
     # binding.pry
     @product = Product.find_by_id(params[:id])
-    @subscripton_exists = Subscription.find_by(product_id: params[:id])
+    # @subscripton_exists = Subscription.find_by(product_id: params[:id])
       # binding.pry
     erb :'products/show'
   end
