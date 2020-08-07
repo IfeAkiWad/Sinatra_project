@@ -1,10 +1,12 @@
+
+
 class SubscriptionsController < ApplicationController
     #index action (shows current user  ALL current subscriptions)
    get '/subscriptions' do
-      # binding.pry
       if logged_in?
-         # binding.pry
          @subscriptions = current_user.subscriptions
+         # @product = Product.find_by_id(params[:id])
+         # binding.pry
          erb :'subscriptions/index'
       else
          redirect '/sessions/login'
@@ -13,7 +15,6 @@ class SubscriptionsController < ApplicationController
 
    #show action (shows current user specific subscription)
    get '/subscriptions/:id' do 
-      # binding.pry
       @subscription = Subscription.find_by_id(params[:id])
       if logged_in?
          erb :'subscriptions/show'
@@ -24,25 +25,21 @@ class SubscriptionsController < ApplicationController
 
    # subscription form
    get '/products/:product_id/subscriptions/new' do 
-      # binding.pry
       @product = Product.find_by_id(params[:product_id])
       erb :'subscriptions/new'
    end
 
    post '/subscriptions' do 
-      #binding.pry
-      current_product(params[:product_id])
+      # current_product(params[:product_id])
+      # binding.pry
       #because of the hidden field, params will now have a key/value pair called product_id
       @subscription = Subscription.new
       @subscription.user_id = current_user.id
       @subscription.product_id = params[:product_id]
       @subscription.frequency = params[:frequency]
-      # binding.pry
          if @subscription.save
-            # binding.pry
             redirect '/subscriptions'
          else
-            # binding.pry
             redirect 'subscriptions/new'
 
          end
@@ -50,14 +47,10 @@ class SubscriptionsController < ApplicationController
    
    # edit/update
    get "/subscriptions/:id/edit" do
-      # binding.pry
       # make sure it is current_user product and subscription before sent to edit page
          @subscription = Subscription.find_by_id(params[:id])
-      
-         #binding.pry
-         current_product = Product.find_by_id(params[:id])
+         # current_product(prod_id) #= Product.find_by_id(params[:id])
          if current_user && (current_user.id == @subscription.user.id)
-            # binding.pry
              erb :'subscriptions/edit'
          else
             redirect '/sessions/login'
@@ -65,9 +58,35 @@ class SubscriptionsController < ApplicationController
    #   erb :'subscriptions/edit'
    end
 
-   private
-   def current_product(prod_id)
-      #binding.pry
-      @product = Product.find_by_id(prod_id)
-   end
+   # patch '/subscriptions/:id' do #edit action
+   #    @subscription = Subscription.find_by_id(params[:id])
+   #    @subscription.user_id = current_user.id
+   #    @subscription.product_id = params[:product_id]
+   #    @subscription.frequency = params[:frequency]
+   #    # @article = Article.find_by_id(params[:id])
+   #    # @article.title = params[:title]
+   #    # @article.content = params[:content]
+   #    @subscription.save
+   #    redirect "/subscriptions/:id"
+   # end
+
+   # post "/subscriptions/:id" do 
+   #    @subscription = Subscription.find_by_id(params[:id])
+   #    @subscription.user_id = current_user.id
+   #    @subscription.product_id = params[:product_id]
+   #    @subscription.frequency = params[:frequency]
+   #    # current_product
+   #    if @subscription.save
+   #       # binding.pry
+   #       redirect '/subscriptions/:id'
+   #    else
+   #       # binding.pry
+   #       redirect "/subscriptions/:id/edit"
+   #    end
+   # end
+
+   # private
+   # def current_product(prod_id)
+   #    @product = Product.find_by_id(prod_id)
+   # end
 end
