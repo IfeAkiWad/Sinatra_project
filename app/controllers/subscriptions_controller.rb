@@ -1,5 +1,5 @@
 class SubscriptionsController < ApplicationController
-    #index action (shows current user current subscriptions)
+    #index action (shows current user  ALL current subscriptions)
    get '/subscriptions' do
       # binding.pry
       if logged_in?
@@ -13,6 +13,7 @@ class SubscriptionsController < ApplicationController
 
    #show action (shows current user specific subscription)
    get '/subscriptions/:id' do 
+      # binding.pry
       @subscription = Subscription.find_by_id(params[:id])
       @cost = #call the cost method on the subsciption
       if logged_in?
