@@ -51,20 +51,24 @@ class SubscriptionsController < ApplicationController
    
    # edit/update
    get "/subscriptions/:id/edit" do
+      # binding.pry
       # make sure it is current_user product and subscription before sent to edit page
          @subscription = Subscription.find_by_id(params[:id])
+      
          #binding.pry
-         current_product(@subscription.product.id)
+         current_product = Product.find_by_id(params[:id])
          if current_user && (current_user.id == @subscription.user.id)
             # binding.pry
              erb :'subscriptions/edit'
+         else
+            redirect '/sessions/login'
          end
    #   erb :'subscriptions/edit'
    end
 
-   private
-   def current_product(prod_id)
-      #binding.pry
-      @product = Product.find_by_id(prod_id)
-   end
+   # private
+   # def current_product(prod_id)
+   #    #binding.pry
+   #    @product = Product.find_by_id(prod_id)
+   # end
 end
