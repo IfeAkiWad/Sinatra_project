@@ -15,7 +15,7 @@ class SubscriptionsController < ApplicationController
    get '/subscriptions/:id' do 
       # binding.pry
       @subscription = Subscription.find_by_id(params[:id])
-      @cost = @subscription.subscription_cost#call the cost method on the subsciption
+      @cost = @subscription.subscription_cost(@subscription.frequency)#call the cost method on the subsciption
       if logged_in?
          erb :'subscriptions/show'
       else
