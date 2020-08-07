@@ -15,8 +15,6 @@ class SubscriptionsController < ApplicationController
    get '/subscriptions/:id' do 
       # binding.pry
       @subscription = Subscription.find_by_id(params[:id])
-      
-      # @cost = @subscription.subscription_cost(@subscription.frequency)#call the cost method on the subsciption
       if logged_in?
          erb :'subscriptions/show'
       else
@@ -39,9 +37,9 @@ class SubscriptionsController < ApplicationController
       @subscription.user_id = current_user.id
       @subscription.product_id = params[:product_id]
       @subscription.frequency = params[:frequency]
+      # @cost = @subscription.subscription_cost(frequency)#call the cost method on the subsciption
       # binding.pry
          if @subscription.save
-            # @subscription.cost(@subscription.frequency)
             # binding.pry
             redirect '/subscriptions'
          else
