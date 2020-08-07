@@ -8,12 +8,15 @@ class Subscription < ActiveRecord::Base
     def subscription_cost(frequency)
         # binding.pry
     # frequency = Subscription.all.find{|s|s.frequency.downcase == frequency}
-        if frequency == "bi-weekly" 
+        case frequency
+        when "bi-weekly" 
             cost = 5.00 
-        elsif frequency == "monthly" 
+        when "monthly" 
             cost =  10.00
-        elsif frequency == "bi-monthly"
+        when "bi-monthly"
             cost =  20.00
+        else
+            "You have no subscription frequency"
         end
         # binding.pry
     subscription_cost
