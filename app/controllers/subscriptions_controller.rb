@@ -37,7 +37,6 @@ class SubscriptionsController < ApplicationController
       @subscription.user_id = current_user.id
       @subscription.product_id = params[:product_id]
       @subscription.frequency = params[:frequency]
-      # @cost = @subscription.subscription_cost(frequency)#call the cost method on the subsciption
       # binding.pry
          if @subscription.save
             # binding.pry
@@ -66,9 +65,9 @@ class SubscriptionsController < ApplicationController
    #   erb :'subscriptions/edit'
    end
 
-   # private
-   # def current_product(prod_id)
-   #    #binding.pry
-   #    @product = Product.find_by_id(prod_id)
-   # end
+   private
+   def current_product(prod_id)
+      #binding.pry
+      @product = Product.find_by_id(prod_id)
+   end
 end
