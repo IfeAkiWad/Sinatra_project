@@ -67,6 +67,21 @@ class SubscriptionsController < ApplicationController
       redirect "/subscriptions/#{@subscription.id}"
    end
 
+   # get "/subscriptions/:id/delete" do
+   #    @subscription = Subscription.find_by_id(params[:id])
+   #    erb :'subscriptions/delete'
+   # end
+
+   # delete '/subscriptions/:id' do #delete action
+   #    @subscription = Subscription.find_by_id(params[:id])
+   # #    # if current_user && (current_user.id == @subscription.user.id)
+   #       @subscription.delete
+   # #       erb :'subscriptions/delete'
+   # # #   else
+   #      redirect '/subscriptions'
+   # # #   end
+   # end
+
    # post "/subscriptions/:id" do 
    #    @subscription = Subscription.find_by_id(params[:id])
    # #    @subscription.user_id = current_user.id

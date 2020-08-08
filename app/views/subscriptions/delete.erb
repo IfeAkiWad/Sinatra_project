@@ -1,0 +1,8 @@
+<h2>Are you sure you want to delete this subscription?</h2>
+<br>
+<h4>Product: <%=@subscription.product.name%></h4>
+<p>Brand: <%=@subscription.product.brand%><br>Product Type: <%=@subscription.product.product_type%></p>
+<form action="/subscriptions" method="post">
+  <input id="hidden" type="hidden" name="_method" value="delete">
+  <input type="submit" value="Delete Subscription">
+</form>
