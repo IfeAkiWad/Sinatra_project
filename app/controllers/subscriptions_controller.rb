@@ -14,7 +14,8 @@ class SubscriptionsController < ApplicationController
    end
 
    #show action (shows current user specific subscription)
-   get '/subscriptions/:id' do 
+   get '/subscriptions/:id' do
+      # binding.pry 
       @subscription = Subscription.find_by_id(params[:id])
       if logged_in?
          erb :'subscriptions/show'
@@ -53,37 +54,33 @@ class SubscriptionsController < ApplicationController
          if current_user && (current_user.id == @subscription.user.id)
              erb :'subscriptions/edit'
          else
-            redirect '/sessions/login'
+            redirect '/subscriptions'
          end
    #   erb :'subscriptions/edit'
    end
 
-   # patch '/subscriptions/:id' do #edit action
-   #    @subscription = Subscription.find_by_id(params[:id])
-   #    @subscription.user_id = current_user.id
-   #    @subscription.product_id = params[:product_id]
-   #    @subscription.frequency = params[:frequency]
-   #    # @article = Article.find_by_id(params[:id])
-   #    # @article.title = params[:title]
-   #    # @article.content = params[:content]
-   #    @subscription.save
-   #    redirect "/subscriptions/:id"
-   # end
+   patch '/subscriptions/:id' do #edit action
+      # binding.pry
+      @subscription = Subscription.find_by_id(params[:id])
+      params.delete(:_method)
+      @subscription.update(params)
+      redirect "/subscriptions/#{@subscription.id}"
+   end
 
    # post "/subscriptions/:id" do 
    #    @subscription = Subscription.find_by_id(params[:id])
-   #    @subscription.user_id = current_user.id
-   #    @subscription.product_id = params[:product_id]
+   # #    @subscription.user_id = current_user.id
+   # #    @subscription.product_id = params[:product_id]
    #    @subscription.frequency = params[:frequency]
-   #    # current_product
-   #    if @subscription.save
-   #       # binding.pry
+   # #    # current_product
+   #    @subscription.save
+   # #       # binding.pry
    #       redirect '/subscriptions/:id'
-   #    else
-   #       # binding.pry
-   #       redirect "/subscriptions/:id/edit"
-   #    end
-   # end
+   #    # else
+   # #       # binding.pry
+   #       # redirect "/subscriptions/:id/edit"
+   #    # end
+   # # end
 
    # private
    # def current_product(prod_id)
