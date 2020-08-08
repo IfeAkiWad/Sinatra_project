@@ -5,8 +5,6 @@ class SubscriptionsController < ApplicationController
    get '/subscriptions' do
       if logged_in?
          @subscriptions = current_user.subscriptions
-         # @product = Product.find_by_id(params[:id])
-         # binding.pry
          erb :'subscriptions/index'
       else
          redirect '/sessions/login'
@@ -15,7 +13,6 @@ class SubscriptionsController < ApplicationController
 
    #show action (shows current user specific subscription)
    get '/subscriptions/:id' do
-      # binding.pry 
       @subscription = Subscription.find_by_id(params[:id])
       if logged_in?
          erb :'subscriptions/show'
@@ -30,9 +27,7 @@ class SubscriptionsController < ApplicationController
       erb :'subscriptions/new'
    end
 
-   post '/subscriptions' do 
-      # current_product(params[:product_id])
-      # binding.pry
+   post '/subscriptions' do #Data from subscription form
       #because of the hidden field, params will now have a key/value pair called product_id
       @subscription = Subscription.new
       @subscription.user_id = current_user.id
@@ -46,17 +41,15 @@ class SubscriptionsController < ApplicationController
          end
    end
    
-   # edit/update
-   get "/subscriptions/:id/edit" do
+   
+   get "/subscriptions/:id/edit" do  #edit form
       # make sure it is current_user product and subscription before sent to edit page
          @subscription = Subscription.find_by_id(params[:id])
-         # current_product(prod_id) #= Product.find_by_id(params[:id])
          if current_user && (current_user.id == @subscription.user.id)
              erb :'subscriptions/edit'
          else
             redirect '/subscriptions'
          end
-   #   erb :'subscriptions/edit'
    end
 
    patch '/subscriptions/:id' do #edit action
@@ -67,20 +60,11 @@ class SubscriptionsController < ApplicationController
       redirect "/subscriptions/#{@subscription.id}"
    end
 
-   # get "/subscriptions/:id/delete" do
-   #    @subscription = Subscription.find_by_id(params[:id])
-   #    erb :'subscriptions/delete'
-   # end
-
-   # delete '/subscriptions/:id' do #delete action
-   #    @subscription = Subscription.find_by_id(params[:id])
-   # #    # if current_user && (current_user.id == @subscription.user.id)
-   #       @subscription.delete
-   # #       erb :'subscriptions/delete'
-   # # #   else
-   #      redirect '/subscriptions'
-   # # #   end
-   # end
+   delete '/subscription/:id' do #delete action
+      @subscription = Subscription.find_by_id(params[:id])
+      @subscription.delete
+      redirect to '/subscriptions'
+    end
 
    # post "/subscriptions/:id" do 
    #    @subscription = Subscription.find_by_id(params[:id])

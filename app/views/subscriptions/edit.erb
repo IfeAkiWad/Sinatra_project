@@ -28,3 +28,7 @@
 </select><br><br>
 <input type="submit" value="Update Subscription">
 </form>
+<form action="/subscription/<%= @subscription.id %>" method="post">
+  <input id="hidden" type="hidden" name="_method" value="delete">
+  <input type="submit" value="delete">
+</form>
