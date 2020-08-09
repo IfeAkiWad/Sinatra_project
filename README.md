@@ -18,7 +18,9 @@ require => 'active_record',
 14. gem 'capybara', 
 15. gem 'rack-test', 
 16. gem 'database_cleaner', git: 'https://github.com/bmabey/database_cleaner.git'
+
 The gems are installed by running bundle install in the terminal.
+
 To have access to the web app via the server, run shotgun into the terminal.
 
 
