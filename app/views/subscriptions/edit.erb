@@ -1,5 +1,4 @@
 <h1> Edit Your Subscription</h1>
-<div class="nav">
 <ul>
     <li>
         <button><h3><a href='/users/homepage'>Home</a></h3></button>
@@ -11,7 +10,6 @@
     <button><h3><a href="/subscriptions">My Subscriptions</a></h3></button>
     </li>
 </ul>
-</div>
 <br><br>
 <form action="/subscriptions/<%=@subscription.id%>" method="post">
 <input type="hidden" name="_method" value="PATCH">
