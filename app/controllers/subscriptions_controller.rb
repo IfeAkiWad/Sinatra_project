@@ -1,8 +1,7 @@
 
 
 class SubscriptionsController < ApplicationController
-    #index action (shows current user  ALL current subscriptions)
-   get '/subscriptions' do
+   get '/subscriptions' do #index action (shows current user ALL current subscriptions)
       if logged_in?
          @subscriptions = current_user.subscriptions
          erb :'subscriptions/index'
@@ -11,8 +10,7 @@ class SubscriptionsController < ApplicationController
       end
    end
 
-   #show action (shows current user specific subscription)
-   get '/subscriptions/:id' do
+   get '/subscriptions/:id' do #show action (shows current user's specific subscription)
       @subscription = Subscription.find_by_id(params[:id])
       if logged_in?
          erb :'subscriptions/show'
@@ -21,10 +19,13 @@ class SubscriptionsController < ApplicationController
       end
    end
 
-   # subscription form
-   get '/products/:product_id/subscriptions/new' do 
+   get '/products/:product_id/subscriptions/new' do # subscription form
       @product = Product.find_by_id(params[:product_id])
+      if logged_in?
       erb :'subscriptions/new'
+      else
+         redirect '/sessions/login'
+      end
    end
 
    post '/subscriptions' do #Data from subscription form
@@ -45,6 +46,11 @@ class SubscriptionsController < ApplicationController
    get "/subscriptions/:id/edit" do  #edit form
       # make sure it is current_user product and subscription before sent to edit page
          @subscription = Subscription.find_by_id(params[:id])
+         if logged_in?
+            erb :'subscriptions/edit'
+            else
+               redirect '/sessions/login'
+            end
          if current_user && (current_user.id == @subscription.user.id)
              erb :'subscriptions/edit'
          else
@@ -62,27 +68,11 @@ class SubscriptionsController < ApplicationController
 
    delete '/subscription/:id' do #delete action
       @subscription = Subscription.find_by_id(params[:id])
-      @subscription.delete
+      if logged_in?
+         @subscription.delete
+         else
+            redirect '/sessions/login'
+         end
       redirect to '/subscriptions'
     end
-
-   # post "/subscriptions/:id" do 
-   #    @subscription = Subscription.find_by_id(params[:id])
-   # #    @subscription.user_id = current_user.id
-   # #    @subscription.product_id = params[:product_id]
-   #    @subscription.frequency = params[:frequency]
-   # #    # current_product
-   #    @subscription.save
-   # #       # binding.pry
-   #       redirect '/subscriptions/:id'
-   #    # else
-   # #       # binding.pry
-   #       # redirect "/subscriptions/:id/edit"
-   #    # end
-   # # end
-
-   # private
-   # def current_product(prod_id)
-   #    @product = Product.find_by_id(prod_id)
-   # end
 end

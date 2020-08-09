@@ -1,4 +1,6 @@
 <h1> Edit Your Subscription</h1>
+<button><a href="/sessions/logout">Log Out</a></button>
+<br><br>
 <ul>
     <li>
         <button><h3><a href='/users/homepage'>Home</a></h3></button>
@@ -26,7 +28,8 @@
 </select><br><br>
 <input type="submit" value="Update Subscription">
 </form>
+<br>
 <form action="/subscription/<%= @subscription.id %>" method="post">
   <input id="hidden" type="hidden" name="_method" value="delete">
-  <input type="submit" value="delete">
+  <input type="submit" value="Delete Subscription">
 </form>

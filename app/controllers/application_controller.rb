@@ -15,12 +15,11 @@ class ApplicationController < Sinatra::Base
 
   helpers do #class
     def logged_in? #should return true if the user_id is in the session hash and false if not. 
-			!!session[:user_id] # helper method to only display the username and account balance if the user is logged in.
+			!!session[:user_id] # helper method to only display the user's name.
     end
     
     def current_user #finds user in the database and returns user
-      # binding.pry
-			@current_user = User.find_by_id(session[:user_id]) #to display the username and balance.
+			@current_user = User.find_by_id(session[:user_id]) #to display the user's name and homepage.
 		end
   end
 
