@@ -1,5 +1,3 @@
-
-
 class SubscriptionsController < ApplicationController
    get '/subscriptions' do #index action (shows current user ALL current subscriptions)
       if logged_in?
@@ -60,19 +58,23 @@ class SubscriptionsController < ApplicationController
 
    patch '/subscriptions/:id' do #edit action
       # binding.pry
-      @subscription = Subscription.find_by_id(params[:id])
-      params.delete(:_method)
-      @subscription.update(params)
-      redirect "/subscriptions/#{@subscription.id}"
+      if logged_in?
+         @subscription = Subscription.find_by_id(params[:id])
+         params.delete(:_method)
+         @subscription.update(params)
+         redirect "/subscriptions/#{@subscription.id}"
+      else
+         redirect '/sessions/login'
+      end
    end
 
    delete '/subscription/:id' do #delete action
       @subscription = Subscription.find_by_id(params[:id])
       if logged_in?
          @subscription.delete
-         else
-            redirect '/sessions/login'
-         end
+      else
+         redirect '/sessions/login'
+      end
       redirect to '/subscriptions'
     end
 end
