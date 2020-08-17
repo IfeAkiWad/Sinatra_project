@@ -1,29 +1,20 @@
 class SubscriptionsController < ApplicationController
    get '/subscriptions' do #index action (shows current user ALL current subscriptions)
-      if logged_in?
-         @subscriptions = current_user.subscriptions
-         erb :'subscriptions/index'
-      else
-         redirect '/sessions/login'
-      end
+      redirect_if_not_logged_in
+      @subscriptions = current_user.subscriptions
+      erb :'subscriptions/index'
    end
 
    get '/subscriptions/:id' do #show action (shows current user's specific subscription)
       @subscription = Subscription.find_by_id(params[:id])
-      if logged_in?
+      redirect_if_not_logged_in
          erb :'subscriptions/show'
-      else
-         redirect '/sessions/login'
-      end
    end
 
    get '/products/:product_id/subscriptions/new' do # subscription form
       @product = Product.find_by_id(params[:product_id])
-      if logged_in?
+      redirect_if_not_logged_in
       erb :'subscriptions/new'
-      else
-         redirect '/sessions/login'
-      end
    end
 
    post '/subscriptions' do #Data from subscription form
@@ -44,12 +35,9 @@ class SubscriptionsController < ApplicationController
    get "/subscriptions/:id/edit" do  #edit form
       # make sure it is current_user product and subscription before sent to edit page
          @subscription = Subscription.find_by_id(params[:id])
-         if logged_in?
+         redirect_if_not_logged_in
             erb :'subscriptions/edit'
-            else
-               redirect '/sessions/login'
-            end
-         if current_user && (current_user.id == @subscription.user.id)
+         if valid_current_user_and_subscription
              erb :'subscriptions/edit'
          else
             redirect '/subscriptions'
@@ -58,23 +46,21 @@ class SubscriptionsController < ApplicationController
 
    patch '/subscriptions/:id' do #edit action
       # binding.pry
-      if logged_in?
+      redirect_if_not_logged_in
          @subscription = Subscription.find_by_id(params[:id])
-         params.delete(:_method)
-         @subscription.update(params)
+         params.delete(:_method) #deleting _method so i can use entire params
+         if valid_current_user_and_subscription
+            @subscription.update(params)
+         end
          redirect "/subscriptions/#{@subscription.id}"
-      else
-         redirect '/sessions/login'
-      end
    end
 
    delete '/subscription/:id' do #delete action
       @subscription = Subscription.find_by_id(params[:id])
-      if logged_in?
-         @subscription.delete
-      else
-         redirect '/sessions/login'
-      end
+      redirect_if_not_logged_in
+         if valid_current_user_and_subscription
+            @subscription.delete
+         end
       redirect to '/subscriptions'
     end
 end

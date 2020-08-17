@@ -1,6 +1,6 @@
 require './config/environment'
 
-class ApplicationController < Sinatra::Base
+class ApplicationController < Sinatra::Base #
 
   configure do
     set :public_folder, 'public'
@@ -23,7 +23,17 @@ class ApplicationController < Sinatra::Base
 		end
   end
 
+  private
+  def redirect_if_not_logged_in
+      if !logged_in?
+        redirect '/sessions/login'
+      end
+  end
 
+  private
+  def valid_current_user_and_subscription
+    current_user && (current_user.id == @subscription.user.id)
+  end
 
   
 
