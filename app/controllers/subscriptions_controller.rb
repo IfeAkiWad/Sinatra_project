@@ -34,10 +34,10 @@ class SubscriptionsController < ApplicationController
    
    get "/subscriptions/:id/edit" do  #edit form
       # make sure it is current_user product and subscription before sent to edit page
-         @subscription = Subscription.find_by_id(params[:id])
-         redirect_if_not_logged_in
-            erb :'subscriptions/edit'
-         if valid_current_user_and_subscription
+      @subscription = Subscription.find_by_id(params[:id])
+      redirect_if_not_logged_in
+      erb :'subscriptions/edit'
+         if current_user && (current_user.id == @subscription.user.id)
              erb :'subscriptions/edit'
          else
             redirect '/subscriptions'
@@ -47,9 +47,9 @@ class SubscriptionsController < ApplicationController
    patch '/subscriptions/:id' do #edit action
       # binding.pry
       redirect_if_not_logged_in
-         @subscription = Subscription.find_by_id(params[:id])
-         params.delete(:_method) #deleting _method so i can use entire params
-         if valid_current_user_and_subscription
+      @subscription = Subscription.find_by_id(params[:id])
+      params.delete(:_method) #deleting _method so i can use entire params
+         if current_user && (current_user.id == @subscription.user.id)
             @subscription.update(params)
          end
          redirect "/subscriptions/#{@subscription.id}"
@@ -58,7 +58,7 @@ class SubscriptionsController < ApplicationController
    delete '/subscription/:id' do #delete action
       @subscription = Subscription.find_by_id(params[:id])
       redirect_if_not_logged_in
-         if valid_current_user_and_subscription
+         if current_user && (current_user.id == @subscription.user.id)
             @subscription.delete
          end
       redirect to '/subscriptions'
