@@ -29,19 +29,4 @@ class ApplicationController < Sinatra::Base #
         redirect '/sessions/login'
       end
   end
-
-  # private
-  # def not_valid_current_user_and_subscription
-  #   if !current_user && (current_user.id == @subscription.user.id)
-  #     redirect '/sessions/login'
-  #   end
-  # end
-
-  # private
-  # def valid_current_user_and_subscription
-  #   current_user && (current_user.id == @subscription.user.id)
-  # end
-
-  
-
 end
