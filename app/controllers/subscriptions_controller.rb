@@ -31,7 +31,6 @@ class SubscriptionsController < ApplicationController
          end
    end
    
-   
    get "/subscriptions/:id/edit" do  #edit form
       # make sure it is current_user product and subscription before sent to edit page
       @subscription = Subscription.find_by_id(params[:id])

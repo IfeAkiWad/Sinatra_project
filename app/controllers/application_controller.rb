@@ -30,13 +30,4 @@ class ApplicationController < Sinatra::Base #
         redirect '/sessions/login'
       end
   end
-
-  # private
-  # def password_empty?
-  #   if params[:password] == ""
-      
-  # end
-
-  # private
-  # def 
 end
