@@ -7,6 +7,7 @@ class ApplicationController < Sinatra::Base #
     set :views, 'app/views'
     enable :sessions
     set :session_secret, ENV["SESSION_SECRET"]
+    register Sinatra::Flash
   end
 
   get '/' do
@@ -29,4 +30,13 @@ class ApplicationController < Sinatra::Base #
         redirect '/sessions/login'
       end
   end
+
+  # private
+  # def password_empty?
+  #   if params[:password] == ""
+      
+  # end
+
+  # private
+  # def 
 end

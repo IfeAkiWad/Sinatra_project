@@ -13,8 +13,11 @@
     <link rel="stylesheet" href="/stylesheets/main.css" />
   </head>
   <body>
+  
     <div class="wrapper">
-
+    <% if flash[:error] %>
+        <h3 style="color:white;"><%= flash[:error] %></h3>
+    <% end %> 
         <%= yield %>
 
       <footer class="branding">

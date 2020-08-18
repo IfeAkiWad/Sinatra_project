@@ -9,10 +9,14 @@ get '/registrations/signup' do
     puts params
 
     @user = User.new(name: params["name"], email: params["email"], username: params["username"], password: params["password"])
-    @user.save
-    session[:user_id] = @user.id #Signs the user in once they have completed the sign-up process.
-
-    redirect '/users/homepage'
+    if @user.save
+      session[:user_id] = @user.id #Signs the user in once they have completed the sign-up process.
+      redirect '/users/homepage'
+    else
+      flash[:error] = "Whoops! Try That Again."
+      # binding.pry
+      erb :'/registrations/signup'
+    end
   end
 
   get '/sessions/login' do
