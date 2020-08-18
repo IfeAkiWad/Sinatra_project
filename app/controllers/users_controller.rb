@@ -32,7 +32,6 @@ get '/registrations/signup' do
       session[:user_id] = user.id #user's ID is stored as the value of session[:user_id].
       redirect "/users/homepage"
     else
-      flash.now[:error] = "Whoops! Try That Again."
       redirect "/sessions/login"
     end
   end
